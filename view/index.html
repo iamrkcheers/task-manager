@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="../css/custom.css">
+    <script src="../model/model.js"></script>
+    <script src="../controller/ctrl.js"></script>
+</head>
+
+<body>
+    <h1>Task Manager</h1>
+    <table>
+        <tr>
+            <td>Task Name :</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="tskname">
+            </td>
+        </tr>
+        <tr>
+            <td>Task Description :</td>
+        </tr>
+        <tr>
+            <td>
+                <textarea name="" cols="30" rows="10" id="tskdesc"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan=2>
+                <button id="addbtn">Add</button>
+                <button id="savebtn">Save</button>
+                <button id="loadbtn">Load</button>
+                <button id="searchbtn">Search</button>
+                <button id="sortbtn">Sort</button>
+                <button id="deletebtn">Delete</button>
+            </td>
+        </tr>
+    </table>
+    <h3 id="searchlbl" class="hidden">Search here : <input type="text" placeholder="Enter name here .." id="searchbox"></h3>
+    <h3>Tasks Pending : <span id="pnd"></span></h3>
+    <h3>Tasks Completed : <span id="cmp"></span></h3>
+    <br>
+    <fieldset>
+        <legend>Task List</legend>
+        <ul id="tsklist">
+        </ul>
+    </fieldset>
+</body>
+
+</html>
