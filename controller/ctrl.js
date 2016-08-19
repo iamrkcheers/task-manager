@@ -5,6 +5,25 @@ function init() {
     document.getElementById("searchbtn").addEventListener("click",searchTask);
     document.getElementById("deletebtn").addEventListener("click",deleteTask);
     document.getElementById("sortbtn").addEventListener("click",sortTask);
+    document.getElementById("savebtn").addEventListener("click",saveTask);
+    document.getElementById("loadbtn").addEventListener("click",loadTask);
+}
+
+function loadTask(){
+    if(localStorage.obj){
+        var object=JSON.parse(localStorage.obj);
+        print(object);
+    }
+}
+
+function saveTask(){
+    if(localStorage){
+        var json=JSON.stringify(tskOp.tskArray);
+        localStorage.obj=json;
+    }
+    else{
+        alert("Your Browser is outdated !");
+    }
 }
 
 function addTask() {
@@ -43,6 +62,19 @@ function sortTask(){
     print(tskOp.tskArray);
 }
 
+function print(count) {
+    var ul=document.getElementById("tsklist");
+    ul.innerHTML="";
+    count.forEach(function(i){
+        var li = document.createElement("li");
+        li.className = "pending";
+        li.innerHTML=i.id+" "+i.name+" "+i.desc+" "+i.completed;
+        ul.appendChild(li);
+        li.addEventListener("click", toggle);
+    });
+    updateCount();
+}
+
 function toggle() {
     var arr = this.innerHTML.split(" ");
     var id = arr[0];
@@ -58,17 +90,4 @@ function toggle() {
 function updateCount() {
     document.getElementById("pnd").innerHTML = tskOp.tskPending();
     document.getElementById("cmp").innerHTML = tskOp.tskCompleted();
-}
-
-function print(count) {
-    var ul=document.getElementById("tsklist");
-    ul.innerHTML="";
-    count.forEach(function(i){
-        var li = document.createElement("li");
-        li.className = "pending";
-        li.innerHTML=i.id+" "+i.name+" "+i.desc;
-        ul.appendChild(li);
-        li.addEventListener("click", toggle);
-    });
-    updateCount();
 }
